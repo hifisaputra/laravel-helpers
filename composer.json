@@ -1,7 +1,7 @@
 {
     "name": "fei77/laravel-helper",
     "type": "library",
-    "description": ":package_description",
+    "description": "a helper package",
     "keywords": [
         "Fei77",
         "LaravelHelper"
@@ -10,8 +10,8 @@
     "license": "MIT",
     "authors": [
         {
-            "name": ":author_name",
-            "email": ":author_email",
+            "name": "Fei77",
+            "email": "fei@feilink.net",
             "homepage": ":author_website",
             "role": "Developer"
         }
