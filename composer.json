@@ -1,12 +1,12 @@
 {
-    "name": "fei77/laravel-helper",
+    "name": "fei77/laravel-helpers",
     "type": "library",
     "description": "a helper package",
     "keywords": [
         "Fei77",
         "LaravelHelper"
     ],
-    "homepage": "https://github.com/fei77/laravel-helper",
+    "homepage": "https://github.com/fei77/laravel-helpers",
     "license": "MIT",
     "authors": [
         {
