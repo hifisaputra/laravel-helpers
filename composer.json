@@ -27,12 +27,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Fei77\\LaravelHelper\\": "src"
+            "Fei77\\LaravelHelpers\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Fei77\\LaravelHelper\\": "tests"
+            "Fei77\\LaravelHelpers\\": "tests"
         }
     },
     "scripts": {
@@ -46,7 +46,7 @@
         },
         "laravel": {
             "providers": [
-                "Fei77\\LaravelHelper\\LaravelHelpersServiceProvider"
+                "Fei77\\LaravelHelpers\\LaravelHelpersServiceProvider"
             ],
             "aliases": {
                 "Helpers": "Fei77\\LaravelHelpers\\Facades\\LaravelHelpers"

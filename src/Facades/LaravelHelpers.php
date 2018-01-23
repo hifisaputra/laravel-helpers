@@ -1,13 +1,13 @@
 <?php
 
-namespace Fei77\LaravelHelper\Facades;
+namespace Fei77\LaravelHelpers\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
-class LaravelHelper extends Facade
+class LaravelHelpers extends Facade
 {
     protected static function getFacadeAccessor()
     {
-        return 'LaravelHelper';
+        return 'LaravelHelpers';
     }
 }

@@ -1,10 +1,10 @@
 <?php
 
-namespace Fei77\LaravelHelper;
+namespace Fei77\LaravelHelpers;
 
 use Illuminate\Support\ServiceProvider;
 
-class LaravelHelperServiceProvider extends ServiceProvider
+class LaravelHelpersServiceProvider extends ServiceProvider
 {
     /**
      * Perform post-registration booting of services.
@@ -27,6 +27,6 @@ class LaravelHelperServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->alias(LaravelHelper::class, 'LaravelHelper');
+        $this->app->alias(LaravelHelpers::class, 'LaravelHelpers');
     }
 }
