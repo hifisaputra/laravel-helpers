@@ -1,10 +1,10 @@
 {
     "name": "fei77/laravel-helpers",
     "type": "library",
-    "description": "a helper package",
+    "description": "a helper library for laravel",
     "keywords": [
         "Fei77",
-        "LaravelHelper"
+        "LaravelHelpers"
     ],
     "homepage": "https://github.com/fei77/laravel-helpers",
     "license": "MIT",
@@ -46,10 +46,10 @@
         },
         "laravel": {
             "providers": [
-                "Fei77\\LaravelHelper\\LaravelHelperServiceProvider"
+                "Fei77\\LaravelHelper\\LaravelHelpersServiceProvider"
             ],
             "aliases": {
-                "Cpanel": "Fei77\\LaravelHelper\\Facades\\LaravelHelper"
+                "Helpers": "Fei77\\LaravelHelpers\\Facades\\LaravelHelpers"
             }
         }
     },
