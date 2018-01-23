@@ -18,9 +18,6 @@ class LaravelHelpers
     File::makeDirectory($storage_path, 0775, true, true);
 
     $image->save($storage_path.$name);
-    Image::make($image->resize(null, 200, function ($constraint) {
-        $constraint->aspectRatio();
-    })->save($storage_path.$thumbnail));
 
     return $path.$name;
   }
