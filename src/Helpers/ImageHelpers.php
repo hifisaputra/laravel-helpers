@@ -22,7 +22,7 @@ class ImageHelpers
 
   public function path($path)
   {
-    File::makeDirectory($storage_path.$path, 0775, true, true);
+    File::makeDirectory($this->$storage_path.$path, 0775, true, true);
     $this->path = $path;
 
     return $this;
