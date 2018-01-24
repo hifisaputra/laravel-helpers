@@ -45,7 +45,23 @@ class ImageHelpers
   {
     $name = $this->prefix.uniqid().'.'.$this->encode;
     $this->image->save($this->storage_path.$this->path.$name);
-    return $name;
+    return $this->path.$name;
+  }
+
+  public function saveWithThumbnail()
+  {
+    $name = $this->prefix.uniqid().'.'.$this->encode;
+    $thumb = $this->prefix.uniqid().'_tn.'.$this->encode;
+    $this->image->save($this->storage_path.$this->path.$name);
+
+    Image::make($this->image->resize(null, 200, function ($constraint) {
+        $constraint->aspectRatio();
+    })->save($this->storage_path.$this->path.$thumb));
+
+    return [
+      'originalName' => $this->path.$name,
+      'thumbnailName' => $this->path.$thumb
+    ];
   }
 
 }
