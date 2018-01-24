@@ -17,7 +17,7 @@ class LaravelHelpers
   {
     foreach ($arrayPath as $path) {
       if ($path != '') {
-        Storage::delete($path);
+        unlink(storage_path('app/public/'.$path));
       }
     }
 
