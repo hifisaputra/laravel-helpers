@@ -4,13 +4,13 @@ namespace Fei77\LaravelHelpers;
 use Image;
 use File;
 use Storage;
-use Helpers\ImageHelpers;
+use Fei77\LaravelHelpers\Helpers\ImageHelpers;
 
 class LaravelHelpers
 {
   public function image($image)
   {
-    return new ImageHelpers($image);  
+    return new ImageHelpers($image);
   }
 
   public function saveImage($image, $path, $prefix='', $encode='jpg')
