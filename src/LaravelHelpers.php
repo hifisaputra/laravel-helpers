@@ -13,35 +13,13 @@ class LaravelHelpers
     return new ImageHelpers($image);
   }
 
-  public function saveImage($image, $path, $prefix='', $encode='jpg')
+  public function delete($arrayPath=[])
   {
-    $image = Image::make($image)->encode($encode, 80);
+    foreach ($arrayPath as $path) {
+      if ($path != '') {
+        Storage::delete($path);
+      }
+    }
 
-    $name = $prefix.uniqid().'.'.$encode;
-
-    $storage_path = storage_path('app/public/'.$path);
-
-    File::makeDirectory($storage_path, 0775, true, true);
-
-    $image->save($storage_path.$name);
-
-    return $path.$name;
-  }
-
-  public function saveThumbnail($image, $path, $prefix='', $encode='jpg')
-  {
-    $image = Image::make($image)->encode($encode, 80);
-
-    $name = 'thumb-'.$prefix.uniqid().'.'.$encode;
-
-    $storage_path = storage_path('app/public/'.$path);
-
-    File::makeDirectory($storage_path, 0775, true, true);
-
-    Image::make($image->resize(null, 200, function ($constraint) {
-        $constraint->aspectRatio();
-    })->save($storage_path.$name));
-
-    return $path.$name;
   }
 }
