@@ -13,11 +13,11 @@ class LaravelHelpersServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-      // if ($this->app->runningInConsole()) {
-      //     $this->publishes([
-      //         __DIR__ . '/config/cpanel.php' => config_path('cpanel.php'),
-      //     ], 'config');
-      // }
+      if ($this->app->runningInConsole()) {
+          $this->publishes([
+              __DIR__ . '/config/laravel-helpers.php' => config_path('laravel-helpers.php'),
+          ], 'config');
+      }
     }
 
     /**

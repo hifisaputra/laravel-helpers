@@ -10,7 +10,6 @@ class ImageHelpers
   protected $path;
   protected $prefix;
   protected $encode = 'jpg';
-  // protected $compression_level;
   protected $storage_path;
 
   public function __construct($image)
