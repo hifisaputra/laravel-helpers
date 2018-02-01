@@ -23,7 +23,9 @@ class LaravelHelpers
   {
     foreach ($arrayPath as $path) {
       if ($path != '') {
-        unlink(storage_path('app/public/'.$path));
+        if (file_exists(storage_path('app/public/'.$path))) {
+          unlink(storage_path('app/public/'.$path));
+        }
       }
     }
 
