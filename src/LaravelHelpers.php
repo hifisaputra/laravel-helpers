@@ -31,7 +31,7 @@ class LaravelHelpers
   {
     foreach ($arrayPath as $path) {
       if ($path != '') {
-        if (file_exists($this->path.$path))) {
+        if (file_exists($this->path.$path)) {
           unlink($this->path.$path));
         }
       }
