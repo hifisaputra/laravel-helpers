@@ -30,8 +30,8 @@ class ImageHelpers
   {
     !starts_with($folder, '/') ? $folder = '/'.$folder : $folder = $folder ;
     !ends_with($folder, '/') ? $folder = $folder.'/' : $folder = $folder ;
-    File::makeDirectory($this->path.'/'.$folder, 0775, true, true);
-    $this->folder = '/'.$folder;
+    File::makeDirectory($this->path.$folder, 0775, true, true);
+    $this->folder = $folder;
     return $this;
   }
 
@@ -57,8 +57,9 @@ class ImageHelpers
 
   public function saveWithThumbnail()
   {
-    $name = $this->prefix.uniqid().'.'.$this->encode;
-    $thumb = $this->prefix.uniqid().'_tn.'.$this->encode;
+    $id = uniqid();
+    $name = $this->prefix.$id.'.'.$this->encode;
+    $thumb = $this->prefix.$id.'_tn.'.$this->encode;
     $this->image->save($this->path.$this->folder.$name);
 
     Image::make($this->image->resize(null, 200, function ($constraint) {
