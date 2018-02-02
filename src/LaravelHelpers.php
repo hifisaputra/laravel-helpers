@@ -9,7 +9,12 @@ use Fei77\LaravelHelpers\Helpers\PixabayHelpers;
 
 class LaravelHelpers
 {
-  protected $path = public_path();
+  protected $path;
+
+  public function __construct()
+  {
+    $this->path = public_path();
+  }
 
   public function path($path)
   {
