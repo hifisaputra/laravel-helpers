@@ -36,6 +36,7 @@ class LaravelHelpers
   {
     foreach ($arrayPath as $path) {
       if ($path != '') {
+        !starts_with($path, '/') ? $path = '/'.$path : $path = $path ;
         if (file_exists($this->path.$path)) {
           unlink($this->path.$path);
         }

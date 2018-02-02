@@ -10,7 +10,7 @@ class ImageHelpers
   protected $path;
   protected $prefix;
   protected $encode = 'jpg';
-  protected $folder = 'images/';
+  protected $folder = '/images/';
 
   public function __construct($image)
   {
@@ -23,15 +23,15 @@ class ImageHelpers
   {
     File::makeDirectory($path, 0775, true, true);
     $this->path = $path;
-
     return $this;
   }
 
   public function folder($folder)
   {
-    File::makeDirectory($this->path.$folder, 0775, true, true);
-    $this->folder = $folder;
-
+    !starts_with($folder, '/') ? $folder = '/'.$folder : $folder = $folder ;
+    !ends_with($folder, '/') ? $folder = $folder.'/' : $folder = $folder ;
+    File::makeDirectory($this->path.'/'.$folder, 0775, true, true);
+    $this->folder = '/'.$folder;
     return $this;
   }
 
