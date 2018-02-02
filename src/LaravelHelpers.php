@@ -9,6 +9,14 @@ use Fei77\LaravelHelpers\Helpers\PixabayHelpers;
 
 class LaravelHelpers
 {
+  protected $path = public_path();
+
+  public function path($path)
+  {
+    $this->path = $path;
+    return $this;
+  }
+
   public function image($image)
   {
     return new ImageHelpers($image);
@@ -23,8 +31,8 @@ class LaravelHelpers
   {
     foreach ($arrayPath as $path) {
       if ($path != '') {
-        if (file_exists(storage_path('app/public/'.$path))) {
-          unlink(storage_path('app/public/'.$path));
+        if (file_exists($this->path.$path))) {
+          unlink($this->path.$path));
         }
       }
     }
