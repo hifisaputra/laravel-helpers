@@ -1,4 +1,4 @@
-# :package_name
+# LaravelHelpers
 
 [![Latest Version on Packagist][ico-version]][link-packagist]
 [![Software License][ico-license]](LICENSE.md)
@@ -7,77 +7,139 @@
 [![Quality Score][ico-code-quality]][link-code-quality]
 [![Total Downloads][ico-downloads]][link-downloads]
 
-**Note:** Replace ```:author_name``` ```:author_username``` ```:author_website``` ```:author_email``` ```:vendor``` ```:package_name``` ```:package_description``` with their correct values in [README.md](README.md), [CHANGELOG.md](CHANGELOG.md), [CONTRIBUTING.md](CONTRIBUTING.md), [LICENSE.md](LICENSE.md) and [composer.json](composer.json) files, then delete this line. You can run `$ php prefill.php` in the command line to make all replacements at once. Delete the file prefill.php as well.
-
-This is where your description should go. Try and limit it to a paragraph or two, and maybe throw in a mention of what
-PSRs you support to avoid any confusion with users and contributors.
-
-## Structure
-
-If any of the following are applicable to your project, then the directory structure should follow industry best practices by being named the following.
-
-```
-bin/        
-config/
-src/
-tests/
-vendor/
-```
-
-
 ## Install
 
 Via Composer
 
 ``` bash
-$ composer require :vendor/:package_name
+$ composer require fei77/laravel-helpers dev-master
 ```
 
 ## Usage
 
 ``` php
-$skeleton = new League\Skeleton();
-echo $skeleton->echoPhrase('Hello, League!');
+// Image helpers
+$image = Helpers::image($request->imagefile)
+
+/**
+ * Change directory path using laravel's helper functions
+ *
+ * Parameters:
+ * (string) - default (public_path())
+ *
+ */
+$image->path(storage_path())
+
+/**
+ * Change the folder path
+ *
+ * Parameters:
+ * (string) - default ('images')
+ */
+$image->folder('images/profile')  
+
+/**
+ * Add prefix to filename
+ *
+ * Parameters:
+ * (string) Here's a list of encoding format
+ * supported by [Intervention Image](http://image.intervention.io)
+ *
+ *  jpg — return JPEG encoded image data
+ *  png — return Portable Network Graphics (PNG) encoded image data
+ *  gif — return Graphics Interchange Format (GIF) encoded image data
+ *  tif — return Tagged Image File Format (TIFF) encoded image data
+ *  bmp — return Bitmap (BMP) encoded image data
+ *  ico — return ICO encoded image data
+ *  psd — return Photoshop Document (PSD) encoded image data
+ *  webp — return WebP encoded image data
+ *  data-url — encode current image data in data URI scheme (RFC 2397)
+ *
+ * (integer) Define the quality of the encoded image optionally.
+ * Data ranging from 0 (poor quality, small file) to 100 (best quality, big file).
+ */
+$image->encode('jpg', 95)
+
+/**
+ * Add prefix to filename
+ *
+ * Parameters:
+ * (string)
+ */
+$image->prefix('user-')
+
+/**
+ * Save the image
+ * Return the image's name
+ */
+$image->save();
+
+dd($image) // '/images/profile/user-5a9d24bb389ae.jpg'
+
+
+/**
+ * Save the image with thumbnail
+ * Return an array of the image's name and the thumbnail's name
+ */
+$image->saveWithThumbnail();
+
+dd($image)
+/**
+ * [
+ *	'originalName' : '/images/profile/user-5a9d24bb389ae.jpg',
+ *  'thumbnailName' : '/images/profile/user-5a9d24bb389ae_tn.jpg'
+ * ]
+ */
+
 ```
 
-## Change log
+## Example
+```php
+public function store(Request $request)
+{
+  $blog = new Blog();
+  $blog->user_id = Auth::user()->id;
+  if ($request->image) {
 
-Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
+    $image = Helpers::image($request->image)->folder('images/blogs')->encode('jpg', 80)->saveWithThumbnail();
+	  // the image files will be saved inside public/images/blogs 
 
-## Testing
+    Helpers::delete([$blog->originalUrl, $blog->previewUrl]);
 
-``` bash
-$ composer test
+    $blog->originalUrl = $image['originalName'];
+    $blog->previewUrl = $image['thumbnailName'];
+  }
+
+  $blog->fill($request->translations);
+  $blog->save();
+}
 ```
+
 
 ## Contributing
 
 Please see [CONTRIBUTING](CONTRIBUTING.md) and [CODE_OF_CONDUCT](CODE_OF_CONDUCT.md) for details.
 
-## Security
 
-If you discover any security related issues, please email :author_email instead of using the issue tracker.
 
-## Credits
-
-- [:author_name][link-author]
+- [][link-author]
 - [All Contributors][link-contributors]
 
 ## License
 
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
 
-[ico-version]: https://img.shields.io/packagist/v/:vendor/:package_name.svg?style=flat-square
+[ico-version]: https://img.shields.io/packagist/v/Fei77/LaravelHelpers.svg?style=flat-square
 [ico-license]: https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square
-[ico-travis]: https://img.shields.io/travis/:vendor/:package_name/master.svg?style=flat-square
-[ico-scrutinizer]: https://img.shields.io/scrutinizer/coverage/g/:vendor/:package_name.svg?style=flat-square
-[ico-code-quality]: https://img.shields.io/scrutinizer/g/:vendor/:package_name.svg?style=flat-square
-[ico-downloads]: https://img.shields.io/packagist/dt/:vendor/:package_name.svg?style=flat-square
+[ico-travis]: https://img.shields.io/travis/Fei77/LaravelHelpers/master.svg?style=flat-square
+[ico-scrutinizer]: https://img.shields.io/scrutinizer/coverage/g/Fei77/LaravelHelpers.svg?style=flat-square
+[ico-code-quality]: https://img.shields.io/scrutinizer/g/Fei77/LaravelHelpers.svg?style=flat-square
+[ico-downloads]: https://img.shields.io/packagist/dt/Fei77/LaravelHelpers.svg?style=flat-square
 
-[link-packagist]: https://packagist.org/packages/:vendor/:package_name
-[link-travis]: https://travis-ci.org/:vendor/:package_name
-[link-scrutinizer]: https://scrutinizer-ci.com/g/:vendor/:package_name/code-structure
-[link-code-quality]: https://scrutinizer-ci.com/g/:vendor/:package_name
-[link-downloads]: https://packagist.org/packages/:vendor/:package_name
-[link-author]: https://github.com/:author_username
+[link-packagist]: https://packagist.org/packages/Fei77/LaravelHelpers
+[link-travis]: https://travis-ci.org/Fei77/LaravelHelpers
+[link-scrutinizer]: https://scrutinizer-ci.com/g/Fei77/LaravelHelpers/code-structure
+[link-code-quality]: https://scrutinizer-ci.com/g/Fei77/LaravelHelpers
+[link-downloads]: https://packagist.org/packages/Fei77/LaravelHelpers
+[link-author]: https://github.com/Fei77
 [link-contributors]: ../../contributors
