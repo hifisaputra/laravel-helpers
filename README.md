@@ -1,11 +1,11 @@
 # LaravelHelpers
 
-[![Latest Version on Packagist][ico-version]][https://packagist.org/packages/fei77/laravel-helpers]
+[![Latest Version on Packagist][ico-version]](https://packagist.org/packages/fei77/laravel-helpers)
 [![Software License][ico-license]](LICENSE.md)
 [![Build Status][ico-travis]][link-travis]
 [![Coverage Status][ico-scrutinizer]][link-scrutinizer]
 [![Quality Score][ico-code-quality]][link-code-quality]
-[![Total Downloads][ico-downloads]][https://packagist.org/packages/fei77/laravel-helpers]
+[![Total Downloads][ico-downloads]](https://packagist.org/packages/fei77/laravel-helpers)
 
 ## Install
 
@@ -102,7 +102,7 @@ public function store(Request $request)
   if ($request->image) {
 
     $image = Helpers::image($request->image)->folder('images/blogs')->encode('jpg', 80)->saveWithThumbnail();
-	  // the image files will be saved inside public/images/blogs 
+	  // the image files will be saved inside public/images/blogs
 
     Helpers::delete([$blog->originalUrl, $blog->previewUrl]);
 
