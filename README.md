@@ -1,11 +1,11 @@
 # LaravelHelpers
 
-[![Latest Version on Packagist][ico-version]][link-packagist]
+[![Latest Version on Packagist][ico-version]][https://packagist.org/packages/fei77/laravel-helpers]
 [![Software License][ico-license]](LICENSE.md)
 [![Build Status][ico-travis]][link-travis]
 [![Coverage Status][ico-scrutinizer]][link-scrutinizer]
 [![Quality Score][ico-code-quality]][link-code-quality]
-[![Total Downloads][ico-downloads]][link-downloads]
+[![Total Downloads][ico-downloads]][https://packagist.org/packages/fei77/laravel-helpers]
 
 ## Install
 
