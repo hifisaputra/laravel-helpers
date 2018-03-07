@@ -12,7 +12,7 @@
 Via Composer
 
 ``` bash
-$ composer require fei77/laravel-helpers dev-master
+$ composer require fei77/laravel-helpers
 ```
 
 ## Usage
