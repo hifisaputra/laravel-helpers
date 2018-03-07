@@ -1,11 +1,11 @@
 # LaravelHelpers
 
-[![Latest Version on Packagist][ico-version]](https://packagist.org/packages/fei77/laravel-helpers)
+[![Latest Version on Packagist][ico-version]][link-packagist]
 [![Software License][ico-license]](LICENSE.md)
 [![Build Status][ico-travis]][link-travis]
 [![Coverage Status][ico-scrutinizer]][link-scrutinizer]
 [![Quality Score][ico-code-quality]][link-code-quality]
-[![Total Downloads][ico-downloads]](https://packagist.org/packages/fei77/laravel-helpers)
+[![Total Downloads][ico-downloads]][link-downloads]
 
 ## Install
 
@@ -129,17 +129,17 @@ Please see [CONTRIBUTING](CONTRIBUTING.md) and [CODE_OF_CONDUCT](CODE_OF_CONDUCT
 
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
 
-[ico-version]: https://img.shields.io/packagist/v/Fei77/LaravelHelpers.svg?style=flat-square
+[ico-version]: https://img.shields.io/packagist/v/fei77/laravel-helpers.svg?style=flat-square
 [ico-license]: https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square
-[ico-travis]: https://img.shields.io/travis/Fei77/LaravelHelpers/master.svg?style=flat-square
-[ico-scrutinizer]: https://img.shields.io/scrutinizer/coverage/g/Fei77/LaravelHelpers.svg?style=flat-square
-[ico-code-quality]: https://img.shields.io/scrutinizer/g/Fei77/LaravelHelpers.svg?style=flat-square
-[ico-downloads]: https://img.shields.io/packagist/dt/Fei77/LaravelHelpers.svg?style=flat-square
+[ico-travis]: https://img.shields.io/travis/fei77/laravel-helpers/master.svg?style=flat-square
+[ico-scrutinizer]: https://img.shields.io/scrutinizer/coverage/g/fei77/laravel-helpers.svg?style=flat-square
+[ico-code-quality]: https://img.shields.io/scrutinizer/g/fei77/laravel-helpers.svg?style=flat-square
+[ico-downloads]: https://img.shields.io/packagist/dt/fei77/laravel-helpers.svg?style=flat-square
 
-[link-packagist]: https://packagist.org/packages/Fei77/LaravelHelpers
-[link-travis]: https://travis-ci.org/Fei77/LaravelHelpers
-[link-scrutinizer]: https://scrutinizer-ci.com/g/Fei77/LaravelHelpers/code-structure
-[link-code-quality]: https://scrutinizer-ci.com/g/Fei77/LaravelHelpers
-[link-downloads]: https://packagist.org/packages/Fei77/LaravelHelpers
+[link-packagist]: https://packagist.org/packages/fei77/laravel-helpers
+[link-travis]: https://travis-ci.org/fei77/laravel-helpers
+[link-scrutinizer]: https://scrutinizer-ci.com/g/fei77/laravel-helpers/code-structure
+[link-code-quality]: https://scrutinizer-ci.com/g/fei77/laravel-helpers
+[link-downloads]: https://packagist.org/packages/fei77/laravel-helpers
 [link-author]: https://github.com/Fei77
 [link-contributors]: ../../contributors
