@@ -88,6 +88,13 @@ dd($image)
  * ]
  */
 
+// Delete helpers
+/**
+* Delete file from the goven path
+* @param $path can be array of strings or just a string.
+*/
+Helpers::delete($path);
+
 ```
 
 ## Example
@@ -110,13 +117,6 @@ public function store(Request $request)
   $blog->fill($request->translations);
   $blog->save();
 }
-
-// Delete helpers
-/**
- * Delete file from the goven path
- * @param $path can be array of strings or just a string.
- */
-Helpers::delete($path);
 ```
 
 
