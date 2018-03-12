@@ -107,9 +107,7 @@ public function store(Request $request)
 
     $image = Helpers::image($request->image)->folder('images/blogs')->encode('jpg', 80)->saveWithThumbnail();
 	  // the image files will be saved inside public/images/blogs
-
-    Helpers::delete([$blog->originalUrl, $blog->previewUrl]);
-
+    
     $blog->originalUrl = $image['originalName'];
     $blog->previewUrl = $image['thumbnailName'];
   }
