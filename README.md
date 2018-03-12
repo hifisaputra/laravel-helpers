@@ -36,7 +36,7 @@ $image->path(storage_path())
 $image->folder('images/profile')  
 
 /**
- * Add prefix to filename
+ * Add encoding
  *
  * Parameters:
  * (string) Here's a list of encoding format
@@ -110,6 +110,13 @@ public function store(Request $request)
   $blog->fill($request->translations);
   $blog->save();
 }
+
+// Delete helpers
+/**
+ * Delete file from the goven path
+ * @param $path can be array of strings or just a string.
+ */
+Helpers::delete($path);
 ```
 
 
