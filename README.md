@@ -90,7 +90,7 @@ dd($image)
 
 // Delete helpers
 /**
-* Delete file from the goven path
+* Delete file from the given path
 * @param $path can be array of strings or just a string.
 */
 Helpers::delete($path);
