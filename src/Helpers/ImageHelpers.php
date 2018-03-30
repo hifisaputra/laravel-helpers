@@ -55,21 +55,34 @@ class ImageHelpers
     return $this->folder.$name;
   }
 
-  public function saveWithThumbnail()
+  public function saveWithThumbnail($size = ['width' => null, 'height' => 200])
   {
     $id = uniqid();
     $name = $this->prefix.$id.'.'.$this->encode;
     $thumb = $this->prefix.$id.'_tn.'.$this->encode;
     $this->image->save($this->path.$this->folder.$name);
 
-    Image::make($this->image->resize(null, 200, function ($constraint) {
-        $constraint->aspectRatio();
-    })->save($this->path.$this->folder.$thumb));
+    $this->resizer($this->image, $size)->save($this->path.$this->folder.$thumb));
 
     return [
       'originalName' => $this->folder.$name,
       'thumbnailName' => $this->folder.$thumb
     ];
+  }
+
+  public function resizer($image, $size = ['height' => null, 'width' => null])
+  {
+    if ($size['height'] !== null && $size['width'] === null) {
+      return Image::make($image->resize($size['height'], null, function($constraint) {
+        $constraint->aspectRatio();
+      }));
+    } elseif ($size['height'] === null && $size['width'] !== null) {
+      return Image::make($image->resize(null, $size['width'], function($constraint) {
+        $constraint->aspectRatio();
+      }));
+    } elseif ($size['height'] !== null && $size['width'] !== null) {
+      return Image::make($image->resize($size['height'], $size['width']));
+    }
   }
 
 }
