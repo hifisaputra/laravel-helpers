@@ -55,14 +55,14 @@ class ImageHelpers
     return $this->folder.$name;
   }
 
-  public function saveWithThumbnail($size = ['width' => null, 'height' => 200])
+  public function saveWithThumbnail($width=null, $height=200)
   {
     $id = uniqid();
     $name = $this->prefix.$id.'.'.$this->encode;
     $thumb = $this->prefix.$id.'_tn.'.$this->encode;
     $this->image->save($this->path.$this->folder.$name);
 
-    $this->resizer($this->image, $size)->save($this->path.$this->folder.$thumb));
+    $this->resizer($this->image, ['width' => $width, 'height' => $height])->save($this->path.$this->folder.$thumb);
 
     return [
       'originalName' => $this->folder.$name,
@@ -70,7 +70,7 @@ class ImageHelpers
     ];
   }
 
-  public function resizer($image, $size = ['height' => null, 'width' => null])
+  public function resizer($image, $size = ['width' => null, 'height' => null])
   {
     if ($size['height'] !== null && $size['width'] === null) {
       return Image::make($image->resize($size['height'], null, function($constraint) {
