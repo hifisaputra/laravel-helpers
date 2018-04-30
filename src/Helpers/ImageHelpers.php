@@ -6,83 +6,148 @@ use File;
 
 class ImageHelpers
 {
-  protected $image;
-  protected $path;
-  protected $prefix;
-  protected $encode = 'jpg';
-  protected $folder = '/images/';
+    /**
+     * The image file
+     */
+    protected $image;
 
-  public function __construct($image)
-  {
-    $this->path = public_path();
-    $this->image = Image::make($image);
-    return $this;
-  }
+    /**
+     * Path where to save the file
+     * 
+     * @var string
+     */
+    protected $path;
 
-  public function path($path)
-  {
-    File::makeDirectory($path, 0775, true, true);
-    $this->path = $path;
-    return $this;
-  }
+    /**
+     * Prefix for filename
+     * 
+     * @var string
+     */
+    protected $prefix;
 
-  public function folder($folder)
-  {
-    !starts_with($folder, '/') ? $folder = '/'.$folder : $folder = $folder ;
-    !ends_with($folder, '/') ? $folder = $folder.'/' : $folder = $folder ;
-    File::makeDirectory($this->path.$folder, 0775, true, true);
-    $this->folder = $folder;
-    return $this;
-  }
+    /**
+     * Default image encode
+     * 
+     * @var string
+     */
+    protected $encode = 'jpg';
 
-  public function encode($encode='jpg', $compression_level=95)
-  {
-    $this->image->encode($encode, $compression_level);
-    $this->encode = $encode;
-    return $this;
-  }
+    /**
+     * Default folder to save the file
+     * 
+     * @var string
+     */
+    protected $folder = '/images/';
 
-  public function prefix($prefix)
-  {
-    $this->prefix = $prefix;
-    return $this;
-  }
-
-  public function save()
-  {
-    $name = $this->prefix.uniqid().'.'.$this->encode;
-    $this->image->save($this->path.$this->folder.$name);
-    return $this->folder.$name;
-  }
-
-  public function saveWithThumbnail($width=null, $height=200)
-  {
-    $id = uniqid();
-    $name = $this->prefix.$id.'.'.$this->encode;
-    $thumb = $this->prefix.$id.'_tn.'.$this->encode;
-    $this->image->save($this->path.$this->folder.$name);
-
-    $this->resizer($this->image, ['width' => $width, 'height' => $height])->save($this->path.$this->folder.$thumb);
-
-    return [
-      'originalName' => $this->folder.$name,
-      'thumbnailName' => $this->folder.$thumb
-    ];
-  }
-
-  public function resizer($image, $size = ['width' => null, 'height' => null])
-  {
-    if ($size['height'] !== null && $size['width'] === null) {
-      return Image::make($image->resize($size['height'], null, function($constraint) {
-        $constraint->aspectRatio();
-      }));
-    } elseif ($size['height'] === null && $size['width'] !== null) {
-      return Image::make($image->resize(null, $size['width'], function($constraint) {
-        $constraint->aspectRatio();
-      }));
-    } elseif ($size['height'] !== null && $size['width'] !== null) {
-      return Image::make($image->resize($size['height'], $size['width']));
+    /**
+     * 
+     */
+    public function __construct($image)
+    {
+        $this->path = public_path();
+        $this->image = Image::make($image);
+        return $this;
     }
-  }
+
+    /**
+     * Set default path for saving the file
+     * 
+     * @param string
+     */
+    public function path($path)
+    {
+        File::makeDirectory($path, 0775, true, true);
+        $this->path = $path;
+        return $this;
+    }
+
+    /**
+     * Set default folder for saving the file
+     * 
+     * @param string
+     */
+    public function folder($folder)
+    {
+        !starts_with($folder, '/') ? $folder = '/'.$folder : $folder = $folder ;
+        !ends_with($folder, '/') ? $folder = $folder.'/' : $folder = $folder ;
+        File::makeDirectory($this->path.$folder, 0775, true, true);
+        $this->folder = $folder;
+        return $this;
+    }
+
+    /**
+     * Set image encoding
+     * 
+     * @param string
+     */
+    public function encode($encode='jpg', $compression_level=95)
+    {
+        $this->image->encode($encode, $compression_level);
+        $this->encode = $encode;
+        return $this;
+    }
+
+    /**
+     * Set prefix for image's filename
+     * 
+     * @param string
+     */
+    public function prefix($prefix)
+    {
+        $this->prefix = $prefix;
+        return $this;
+    }
+
+    /**
+     * Save image to storage
+     * 
+     * @return string
+     */
+    public function save()
+    {
+        $name = $this->prefix.uniqid().'.'.$this->encode;
+        $this->image->save($this->path.$this->folder.$name);
+        return $this->folder.$name;
+    }
+
+    /**
+     * Save image and it's thumbnail to storage
+     * 
+     * @return array
+     */
+    public function saveWithThumbnail($width=null, $height=200)
+    {
+        $id = uniqid();
+        $name = $this->prefix.$id.'.'.$this->encode;
+        $thumb = $this->prefix.$id.'_tn.'.$this->encode;
+        $this->image->save($this->path.$this->folder.$name);
+
+        $this->resizer($this->image, ['width' => $width, 'height' => $height])->save($this->path.$this->folder.$thumb);
+
+        return [
+            'originalName' => $this->folder.$name,
+            'thumbnailName' => $this->folder.$thumb
+        ];
+    }
+
+    /**
+     * Resize image
+     * 
+     * @param 
+     */
+    public function resizer($image, $size = ['width' => null, 'height' => null])
+    {
+        if ($size['height'] !== null && $size['width'] === null) {
+            return Image::make($image->resize($size['height'], null, function($constraint) {
+                $constraint->aspectRatio();
+            }));
+        } elseif ($size['height'] === null && $size['width'] !== null) {
+            return Image::make($image->resize(null, $size['width'], function($constraint) {
+                $constraint->aspectRatio();
+            }));
+        } elseif ($size['height'] !== null && $size['width'] !== null) {
+            return Image::make($image->resize($size['height'], $size['width']));
+        }
+    }
 
 }
