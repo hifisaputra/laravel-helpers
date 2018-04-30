@@ -1,6 +1,6 @@
 <?php
 
-namespace Fei77\LaravelHelpers\Helpers\Config;
+namespace Fei77\LaravelHelpers\Helpers;
 use Fei77\Lib\Rewrite;
 use Config;
 
