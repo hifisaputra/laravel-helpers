@@ -95,6 +95,15 @@ dd($image)
 */
 Helpers::delete($path);
 
+//Config writer
+/**
+ * Write laravel config file 
+ * 
+ * credit: https://github.com/daftspunk/laravel-config-writer
+ * 
+ * @param array
+ */
+Helpers::config()->write(['app.locale' => 'en']);
 ```
 
 ## Example
