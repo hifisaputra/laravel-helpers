@@ -1,7 +1,7 @@
 <?php
 
 namespace Fei77\LaravelHelpers\Helpers;
-use Fei77\Lib\Rewrite;
+use Fei77\LaravelHelpers\Lib\Rewrite;
 use Config;
 
 class ConfigHelpers 
