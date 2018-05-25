@@ -129,6 +129,18 @@ class ImageHelpers
             'thumbnailName' => $this->folder.$thumb
         ];
     }
+    
+    /**
+     * Resize image
+     * 
+     * @param int $width
+     * @param int $height
+     * @return void
+     */
+    public function resize($width = null, $height = null)
+    {
+        return $this->resizer($this->image, ['width' => $width, 'height' => $height]);
+    }
 
     /**
      * Resize image
