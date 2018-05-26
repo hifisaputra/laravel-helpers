@@ -103,10 +103,16 @@ class ImageHelpers
      * 
      * @return string
      */
-    public function save()
+    public function save($width = null, $height = null)
     {
         $name = $this->prefix.uniqid().'.'.$this->encode;
-        $this->image->save($this->path.$this->folder.$name);
+
+        if($width !== null || $height !== null) {
+            $this->resizer($this->image, ['width' => $width, 'height' => $height])->save($this->path.$this->folder.$thumb);            
+        } else {
+            $this->image->save($this->path.$this->folder.$name);
+        }
+
         return $this->folder.$name;
     }
 
@@ -130,18 +136,6 @@ class ImageHelpers
         ];
     }
     
-    /**
-     * Resize image
-     * 
-     * @param int $width
-     * @param int $height
-     * @return void
-     */
-    public function resize($width = null, $height = null)
-    {
-        return $this->resizer($this->image, ['width' => $width, 'height' => $height]);
-    }
-
     /**
      * Resize image
      * 
