@@ -108,7 +108,7 @@ class ImageHelpers
         $name = $this->prefix.uniqid().'.'.$this->encode;
 
         if($width !== null || $height !== null) {
-            $this->resizer($this->image, ['width' => $width, 'height' => $height])->save($this->path.$this->folder.$thumb);            
+            $this->resizer($this->image, ['width' => $width, 'height' => $height])->save($this->path.$this->folder.$name);            
         } else {
             $this->image->save($this->path.$this->folder.$name);
         }
