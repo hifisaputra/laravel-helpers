@@ -129,12 +129,7 @@ public function store(Request $request)
 
 ## Contributing
 
-Please see [CONTRIBUTING](CONTRIBUTING.md) and [CODE_OF_CONDUCT](CODE_OF_CONDUCT.md) for details.
-
-
-
-- [][link-author]
-- [All Contributors][link-contributors]
+- [Fei77][link-author]
 
 ## License
 
