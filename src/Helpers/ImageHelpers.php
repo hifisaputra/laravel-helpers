@@ -127,9 +127,11 @@ class ImageHelpers
     {
         $name = $this->prefix;
 
-        if($this->name) $name .= $this->name;
-
-        $name .= uniqid().'.'.$this->encode;
+        if($this->name) {
+            $name .= $this->name;
+        } else {
+            $name .= uniqid().'.'.$this->encode;
+        }
 
         return $name;
     }
