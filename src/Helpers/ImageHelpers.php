@@ -44,7 +44,7 @@ class ImageHelpers
      * 
      * @var string
      */
-    protected $name;
+    protected $name = false;
 
     /**
      * 
@@ -125,7 +125,7 @@ class ImageHelpers
      */
     public function getName()
     {
-        $name = $this->prefix;
+        $name = "$this->prefix - ";
 
         if($this->name) {
             $name .= $this->name;
