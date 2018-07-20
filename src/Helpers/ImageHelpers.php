@@ -40,6 +40,13 @@ class ImageHelpers
     protected $folder = '/images/';
 
     /**
+     * The image's filename.
+     * 
+     * @var string
+     */
+    protected $name;
+
+    /**
      * 
      */
     public function __construct($image)
@@ -91,11 +98,40 @@ class ImageHelpers
      * Set prefix for image's filename
      * 
      * @param string
+     * @return void
      */
     public function prefix($prefix)
     {
         $this->prefix = $prefix;
         return $this;
+    }
+
+    /**
+     * Manually set the image's filename.
+     * 
+     * @param string $name
+     * @return void
+     */
+    public function name($name)
+    {
+        $this->name = $name;
+        return $this;
+    }
+
+    /**
+     * Generate a name for the image.
+     * 
+     * @return string
+     */
+    public function getName()
+    {
+        $name = $this->prefix;
+
+        if($this->name) $name .= $this->name;
+
+        $name .= uniqid().'.'.$this->encode;
+
+        return $name;
     }
 
     /**
@@ -105,7 +141,7 @@ class ImageHelpers
      */
     public function save($width = null, $height = null)
     {
-        $name = $this->prefix.uniqid().'.'.$this->encode;
+        $name = $this->getName();
 
         if($width !== null || $height !== null) {
             $this->resizer($this->image, ['width' => $width, 'height' => $height])->save($this->path.$this->folder.$name);            
