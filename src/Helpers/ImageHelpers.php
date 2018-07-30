@@ -46,9 +46,6 @@ class ImageHelpers
      */
     protected $name;
 
-    /**
-     * 
-     */
     public function __construct($image)
     {
         $this->path = public_path();
@@ -59,7 +56,7 @@ class ImageHelpers
     /**
      * Set default path for saving the file
      * 
-     * @param string
+     * @param string $path
      */
     public function path($path)
     {
@@ -71,13 +68,11 @@ class ImageHelpers
     /**
      * Set default folder for saving the file
      * 
-     * @param string
+     * @param string $folder
      */
     public function folder($folder)
     {
-        !starts_with($folder, '/') ? $folder = '/'.$folder : $folder = $folder ;
-        !ends_with($folder, '/') ? $folder = $folder.'/' : $folder = $folder ;
-        File::makeDirectory($this->path.$folder, 0775, true, true);
+        File::makeDirectory($this->path.str_finish(str_start($folder, '/'), '/'), 0775, true, true);
         $this->folder = $folder;
         return $this;
     }
@@ -85,7 +80,8 @@ class ImageHelpers
     /**
      * Set image encoding
      * 
-     * @param string
+     * @param string $encode
+     * @param int $compression_level
      */
     public function encode($encode='jpg', $compression_level=95)
     {
@@ -97,8 +93,7 @@ class ImageHelpers
     /**
      * Set prefix for image's filename
      * 
-     * @param string
-     * @return void
+     * @param string $prefix
      */
     public function prefix($prefix)
     {
@@ -110,7 +105,6 @@ class ImageHelpers
      * Manually set the image's filename.
      * 
      * @param string $name
-     * @return void
      */
     public function name($name)
     {
@@ -141,6 +135,8 @@ class ImageHelpers
     /**
      * Save image to storage
      * 
+     * @param int $width
+     * @param int $height
      * @return string
      */
     public function save($width = null, $height = null)
@@ -154,26 +150,6 @@ class ImageHelpers
         }
 
         return $this->folder.$name;
-    }
-
-    /**
-     * Save image and it's thumbnail to storage
-     * 
-     * @return array
-     */
-    public function saveWithThumbnail($width=null, $height=200)
-    {
-        $id = uniqid();
-        $name = $this->prefix.$id.'.'.$this->encode;
-        $thumb = $this->prefix.$id.'_tn.'.$this->encode;
-        $this->image->save($this->path.$this->folder.$name);
-
-        $this->resizer($this->image, ['width' => $width, 'height' => $height])->save($this->path.$this->folder.$thumb);
-
-        return [
-            'originalName' => $this->folder.$name,
-            'thumbnailName' => $this->folder.$thumb
-        ];
     }
     
     /**
