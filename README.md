@@ -9,7 +9,7 @@
 Via Composer
 
 ``` bash
-$ composer require fei77/laravel-helpers
+$ composer require hifisaputra/laravel-helpers
 ```
 
 ## Usage
@@ -129,7 +129,7 @@ public function store(Request $request)
 
 ## Contributing
 
-- [Fei77][link-author]
+- [hifisaputra][link-author]
 
 ## License
 
@@ -147,5 +147,5 @@ The MIT License (MIT). Please see [License File](LICENSE.md) for more informatio
 [link-scrutinizer]: https://scrutinizer-ci.com/g/fei77/laravel-helpers/code-structure
 [link-code-quality]: https://scrutinizer-ci.com/g/fei77/laravel-helpers
 [link-downloads]: https://packagist.org/packages/fei77/laravel-helpers
-[link-author]: https://github.com/Fei77
+[link-author]: https://github.com/hifisaputra
 [link-contributors]: ../../contributors
